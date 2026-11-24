@@ -1,76 +1,89 @@
-\# 🥜 Anya Desktop Companion (AI Pet for Windows)
+# 🥜 Anya Desktop Companion
 
+> **A quiet, interactive Anya Forger (*Spy x Family*) AI companion for your Windows desktop**, inspired by the architecture of [lachydotmcg/capri-desktop](https://github.com/lachydotmcg/capri-desktop).
 
+Anya lives right on top of your Windows desktop — walking along your taskbar, landing on active windows, reacting to music, splatting face-first when tossed too hard, and chatting with you powered by local or cloud LLMs and custom TTS voices.
 
-A lightweight, interactive \*\*Anya Forger\*\* (\*Spy x Family\*) AI desktop companion for Windows, inspired by the architecture of \[lachydotmcg/capri-desktop](https://github.com/lachydotmcg/capri-desktop).
+---
 
+## ✨ Features
 
+* **🪟 Window-Aware Physics (60–260 FPS Lock):** Walks on your taskbar, lands on top of open windows, bounces off screen edges, and features a high-precision frame limiter.
+* **💥 Grab, Throw & Face-Splat:** Pick Anya up with your mouse, toss her across the screen, watch her splat face-first on hard impacts, or hold `Shift` on release to pin her mid-air.
+* **🎵 Music Player Reactivity:** Detects playback from music apps (such as Spotify) and makes Anya whistle while strolling or dance to the beat.
+* **🧠 AI Brain & Telepathy:** Chat with Anya via **Ollama** or any OpenAI-compatible API, and let her peek at your active window titles to comment on what you're doing.
+* **🔊 TTS Voice Synthesis:** Supports **Fish Audio** (`v1/tts`), OpenAI-compatible/local TTS servers, and built-in offline Windows speech.
+* **❄️ Anya Mainframe GUI:** Obsidian-black and pastel-pink control panel with falling snow animation and live settings saving (`settings.json`).
+* **👻 Hologram (Click-Through) Mode:** Pass mouse clicks right through Anya while gaming or working, and hold `Left Alt` to restore normal interaction.
 
-Anya sits on top of your open application windows, reacts to system music, splats face-first onto your taskbar when thrown, and uses local LLMs (via \*\*Ollama\*\* or any OpenAI-compatible API) to "read your mind" and comment on what you're doing on your PC.
+---
 
-
-
-\---
-
-
-
-\## ✨ Features
-
-
-
-\* \*\*🪟 Window-Aware Physics (60 FPS):\*\* Anya walks on your taskbar, lands on top of active windows (Discord, Chrome, VS Code), and bounces off screen borders.
-
-\* \*\*💥 Throw \& Face-Splat Mechanics:\*\* Grab and toss Anya across your monitor — if she hits the floor too hard, she splats face-first onto the ground (`splat.gif`). Hold `Shift` while releasing the mouse to pin her mid-air.
-
-\* \*\*🎵 Reactive Audio Detection (WASAPI):\*\* When music or videos play on your PC, Anya automatically starts whistling and strolling along your screen (`whistle.gif`) or breaks into a dance (`dance.gif`).
-
-\* \*\*🧠 Telepathy \& Local AI Brain:\*\* Double-click Anya (or right-click -> \*Read My Mind\*) to chat. Powered by \*\*Ollama\*\* (`gemma3:4b` by default) or any OpenAI-compatible endpoint.
-
-\* \*\*👻 Hologram (Click-Through) Mode:\*\* Right-click Anya to enable Ghost/Hologram mode so your mouse clicks pass right through her while gaming. Hold `Left Alt` to make her solid again.
-
-
-
-\---
-
-
-
-\## 🎮 Controls
-
-
+## 🎮 Controls
 
 | Action | Control |
-
 | :--- | :--- |
+| **Grab & Throw** | `Left-Click + Drag` |
+| **Pin in Mid-Air** | Hold `Shift` while releasing `Left-Click` |
+| **Quick Chat** | `Double Left-Click` on Anya |
+| **Mainframe & Actions Menu** | `Right-Click` on Anya |
+| **Exit Hologram Mode** | Hold `Left Alt` |
 
-| \*\*Pick up \& Throw\*\* | `Left-Click + Drag` |
+---
 
-| \*\*Pin in Mid-Air (Anti-Gravity)\*\* | Hold `Shift` while releasing `Left-Click` |
+## 📦 Installation & Setup
 
-| \*\*Open Quick Chat\*\* | `Double Left-Click` on Anya |
+### 1. Prerequisites
+* **Windows 10 / 11** (x64)
+* [.NET 8.0 Desktop Runtime](https://dotnet.microsoft.com/download/dotnet/8.0)
 
-| \*\*Context Menu (Telepathy, Peanuts, Hologram)\*\* | `Right-Click` on Anya |
+### 2. Run the Release Build
+1. Download the release archive or `AnyaCompanion.exe` from the **Releases** page.
+2. Extract all files into a folder (for example, `C:\AnyaCompanion`).
+3. Launch `AnyaCompanion.exe`.
 
-| \*\*Exit Hologram (Click-Through) Mode\*\* | Hold `Left Alt` |
+---
 
+## ⚙️ Configuring Brain & Voice (Anya Mainframe)
 
+Right-click Anya on your desktop and select **⚙️ Open Anya Mainframe (GUI Settings)** to configure everything without editing config files manually.
 
-\---
+### 🧠 Brain (AI Chat & Telepathy)
+Open the **BRAIN** tab:
 
+* **Local & Free via Ollama:**
+  1. Install [Ollama](https://ollama.com/) and pull a model in your terminal:
+     ```bash
+     ollama run gemma3:4b
+     ```
+  2. Set the following fields in the **BRAIN** tab:
+     * **AI Provider Preset:** `Ollama (Local - Free)`
+     * **API Endpoint URL:** `http://localhost:11434/v1/chat/completions`
+     * **API Key:** `ollama`
+     * **Model Name:** `gemma3:4b`
+  3. Click **⚡ Test Brain** to verify.
 
+* **Cloud Providers (OpenRouter / Google Gemini / OpenAI):**
+  1. Get an API key from your provider (such as [OpenRouter](https://openrouter.ai/) or [Google AI Studio](https://aistudio.google.com/)).
+  2. Select your preset or **Custom Endpoint**, enter your **API Endpoint URL**, **API Key**, and **Model Name** (e.g., `google/gemini-2.5-flash` or `gpt-4o-mini`).
 
-\## 🚀 Quick Start
+### 🔊 Voice (TTS Output)
+Open the **VOICE** tab:
 
+* **Fish Audio:**
+  1. Sign up on [Fish Audio](https://fish.audio/), create an API key (`sk-fish-...`), and copy your voice `Reference ID`.
+  2. Configure in the **VOICE** tab:
+     * Check **Enable Anya Voice Output (TTS)**
+     * **Voice Engine / Provider:** `Fish Audio / Custom HTTP Endpoint`
+     * **TTS Endpoint URL:** `https://api.fish.audio/v1/tts`
+     * **TTS API Key:** `sk-fish-YOUR_API_KEY_HERE`
+     * **Voice ID / Reference ID:** `YOUR_VOICE_REFERENCE_ID_HERE`
+  3. Click **🔊 Test Anya's Voice**.
 
+* **Offline / Instant:**
+  * Choose **`Windows Built-in (Instant / Offline)`** for immediate speech with zero setup.
 
-\### 1. Prerequisites
+---
 
-\* \*\*Windows 10 / 11\*\*
-
-\* \[.NET 8.0 Desktop Runtime](https://dotnet.microsoft.com/download/dotnet/8.0)
-
-\* \*(Optional for AI Chat)\* \[Ollama](https://ollama.com/) installed locally:
-
-&#x20; ```bash
-
-&#x20; ollama run gemma3:4b
-
+## 🙌 Credits
+* Inspired by [lachydotmcg/capri-desktop](https://github.com/lachydotmcg/capri-desktop).
+* Character: **Anya Forger** from *Spy x Family* by Tatsuya Endo.
