@@ -1,0 +1,90 @@
+<Window x:Class="DesktopCompanion.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:gif="http://wpfanimatedgif.codeplex.com"
+        Title="Anya Desktop Companion"
+        Width="240" Height="280"
+        WindowStyle="None"
+        AllowsTransparency="True"
+        Background="Transparent"
+        Topmost="True"
+        ShowInTaskbar="False"
+        ResizeMode="NoResize"
+        Loaded="Window_Loaded">
+
+    <Window.ContextMenu>
+        <ContextMenu Background="#09090E" Foreground="#FFF0F5" BorderBrush="#FFB7C5" BorderThickness="1.5">
+            <MenuItem Header="⚙️ Open Anya Mainframe (GUI Settings)" Click="MenuSettings_Click" FontWeight="Bold" Foreground="#FFB7C5"/>
+            <Separator Background="#33FFB7C5"/>
+            <MenuItem Header="💬 Talk to Anya" Click="MenuTalk_Click"/>
+            <MenuItem Header="🧠 Read My Mind (Telepathy)" Click="MenuTelepathy_Click"/>
+            <MenuItem Header="🥜 Give Peanuts" Click="MenuPeanuts_Click"/>
+            <Separator Background="#33FFB7C5"/>
+            <MenuItem Header="👻 Hologram Mode (Hold Alt to restore)" Click="MenuHologram_Click"/>
+            <MenuItem Header="❌ Dismiss Anya" Click="MenuExit_Click"/>
+        </ContextMenu>
+    </Window.ContextMenu>
+
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*" />
+            <RowDefinition Height="Auto" />
+        </Grid.RowDefinitions>
+
+        <!-- Pastel Pink & Black Speech Bubble -->
+        <Border x:Name="SpeechBubble"
+                Grid.Row="0"
+                Background="#F209090E"
+                BorderBrush="#FFB7C5"
+                BorderThickness="2"
+                CornerRadius="14"
+                Padding="11,7"
+                Margin="6,4,6,6"
+                VerticalAlignment="Bottom"
+                Visibility="Collapsed">
+            <TextBlock x:Name="BubbleText"
+                       Text="Waku waku!"
+                       Foreground="#FFF0F5"
+                       FontSize="12"
+                       FontWeight="SemiBold"
+                       TextWrapping="Wrap"
+                       TextAlignment="Center"/>
+        </Border>
+
+        <!-- Anya Sprite + Quick Chat Box -->
+        <Grid Grid.Row="1" VerticalAlignment="Bottom" HorizontalAlignment="Center">
+            <Image x:Name="AnyaSprite"
+       Width="150" Height="150"
+       Stretch="Uniform"
+       HorizontalAlignment="Center"
+       VerticalAlignment="Bottom"
+       RenderTransformOrigin="0.5,0.5"
+       RenderOptions.BitmapScalingMode="HighQuality"
+       Cursor="Hand"
+       MouseLeftButtonDown="Sprite_MouseLeftButtonDown"
+       MouseLeftButtonUp="Sprite_MouseLeftButtonUp">
+    <Image.RenderTransform>
+        <ScaleTransform x:Name="SpriteFlip" ScaleX="1" ScaleY="1"/>
+    </Image.RenderTransform>
+</Image>
+
+            <Border x:Name="ChatInputBox"
+                    VerticalAlignment="Bottom"
+                    Background="#F509090E"
+                    BorderBrush="#FFB7C5"
+                    BorderThickness="1.5"
+                    CornerRadius="10"
+                    Padding="6"
+                    Width="210"
+                    Visibility="Collapsed">
+                <TextBox x:Name="UserPromptInput"
+                         Background="Transparent"
+                         Foreground="#FFF0F5"
+                         CaretBrush="#FFB7C5"
+                         BorderThickness="0"
+                         FontSize="12"
+                         KeyDown="UserPromptInput_KeyDown"/>
+            </Border>
+        </Grid>
+    </Grid>
+</Window>
